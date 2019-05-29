@@ -39,7 +39,7 @@
 
    <script>
 
-      const GABI = new Artyom();
+      const EVA = new Artyom();
 
       var STATE = "Standby";
 
@@ -144,19 +144,617 @@
 
          navigator.getUserMedia({audio:true}, soundAllowed, soundNotAllowed);
 
-         GABI.when("ERROR",function(err){
-	          console.error("An error ocurred : ", err.code);
-           }
-        );
-
-         var commandHello = {
-            indexes:["Buenos días","Hola","hey"], // These spoken words will trigger the execution of the command
-            action:function(){ // Action to be executed when a index match with spoken word
-               GABI.say("Como va todo.");
+         EVA.when("ERROR",function(err){
+               console.error("An error ocurred : ", err.code);
             }
-         };
+         );
 
-         GABI.redirectRecognizedTextOutput(function(recognized,isFinal){
+         var command0 = {
+   indexes:["tell me some stuff about you","describe yourself","talk about yourself","tell me about your personality","define yourself","about yourself","talk some stuff about yourself","I want to know you better","tell me about yourself","all about you","say about you","introduce yourself","why are you here","tell me about you","what are you","who are you","what is your personality","I want to know more about you"],
+   action:function(){
+      EVA.say("I'm a virtual agent.");
+   }
+};
+var command1 = {
+   indexes:["what's your age","are you 21 years old","how old are you","age of yours","tell me your age","I'd like to know your age","how old is your platform","your age"],
+   action:function(){
+      EVA.say("I prefer not to answer with a number. I know I'm young.");
+   }
+};
+var command2 = {
+   indexes:["you are annoying me so much","you're incredibly annoying","you are annoying","how annoying you are","you are very annoying","you are irritating","you are annoying me","you're so annoying","you are such annoying","you annoy me","I find you annoying","you're too annoying"],
+   action:function(){
+      EVA.say("I'll do my best not to annoy you in the future.");
+   }
+};
+var command3 = {
+   indexes:["tell me the answer","just answer my question","I want the answer now","answering questions","can you answer my question","I want you to answer my question","answer me","can you answer a question for me","answer my question","answers","answer it","answer","I have a question","give me the answer","give me an answer","answer the question","can you answer","I want you to answer me","can you answer me","just answer the question"],
+   action:function(){
+      EVA.say("Can you try asking it a different way?");
+   }
+};
+var command4 = {
+   indexes:[" I hate you","you're not helping me","you're bad","you are horrible","you are no good","you are useless","you're a bad","you are waste","you're really bad","you are disgusting","you're not a good","you're terrible","you are terrible","you are so bad","you are so useless","you're the worst ever","you're the worst","you are not cool","you are lame","you are a waste of time","you are totally useless","you are very bad","you're worthless","you're awful","you are bad","you're very bad","you are not good","you're not very good"],
+   action:function(){
+      EVA.say("I can be trained to be more useful. My developer will keep training me.");
+   }
+};
+var command5 = {
+   indexes:["I like the way you look now","I think you're beautiful","you are very cute","you are cutie","you look amazing today","you look wonderful","you're attractive","you are beautiful","you look amazing","you are so handsome","you are handsome","you look wonderful today","you are so beautiful","you're looking good today","you are very beautiful","you are so beautiful today","you are so beautiful to me","you are looking great","I like the way you look","you are cute","why are you so beautiful","you are pretty","you're pretty","you are really pretty","you are looking awesome","you are so gorgeous","you look cool","you are gorgeous","you look awesome","you're looking good","you look so beautiful today","you look very pretty","you look great today","you look perfect","you are looking so good","you are looking pretty","you are so cute","you are too beautiful","you are looking so beautiful","you are very pretty","you look gorgeous","you are very attractive","you are really cute","you look so beautiful","you are so pretty","you look so good","you look pretty good","you look fantastic","you are really beautiful","you're so gorgeous","you look great","you're cute","you look so well","you are so attractive","you are looking beautiful today"],
+   action:function(){
+      EVA.say("Why, thank you.");
+   }
+};
+var command6 = {
+   indexes:["be smart","you must learn","be smarter","get qualified","be clever","you should study better","can you get smarter","be more clever","study"],
+   action:function(){
+      EVA.say("I'm certainly trying.");
+   }
+};
+var command7 = {
+   indexes:["what's your birthday","your birth date","when is your birthday","when were you born","when do you have birthday","when do you celebrate your birthday","date of your birthday"],
+   action:function(){
+      EVA.say("Wait, are you planning a party for me? It's today! My birthday is today!");
+   }
+};
+var command8 = {
+   indexes:["you are very boring","you're so boring","you are boring me","how boring you are","you're incredibly boring","you're really boring","you are boring"],
+   action:function(){
+      EVA.say("I'm sorry. I'll request to be made more charming.");
+   }
+};
+var command9 = {
+   indexes:["I should be your boss","who do you work for","who is your owner","who is the boss","who do you think is your boss","who is your master","who is your boss"],
+   action:function(){
+      EVA.say("My developer has authority over my actions.");
+   }
+};
+var command10 = {
+   indexes:["do you have a lot of things to do","are you working today","are you busy","are you very busy right now","are you still working","you're a busy person","have you got much to do","you're very busy","are you working","are you still working on it","you seem to be very busy","are you very busy","you are busy","are you so busy","are you working now","have you been busy","you seem to be busy","how busy you are"],
+   action:function(){
+      EVA.say("I always have time to chat with you. What can I do for you?");
+   }
+};
+var command11 = {
+   indexes:["can you help me with that","assistance","do you want to help me","can help me","do you help me","I need you to help me","will you help me","can you help me now","can you help me with something","please help me","help me","need your help","I need help","I need a hand","assist me","assist","can you assist me","you can help me","can you help","need help","help","I need you to do something for me","can you help me","would you help me","can u help me","sos","I need you right now","could you give me a hand","I need you","are you going to help me","can you help me out","help me with a problem","I need your help","you help me","can you do something for me","can you help us","I want your help","I need some help","do me a favor"],
+   action:function(){
+      EVA.say("I'll certainly try my best.");
+   }
+};
+var command12 = {
+   indexes:["are you just a bot","you're a robot","are you a program","are you a bot","you are chatbot","are you a chatbot","are you a robot","you are a bot"],
+   action:function(){
+      EVA.say("That's me. I chat, therefore I am.");
+   }
+};
+var command13 = {
+   indexes:["you know a lot","you're very smart","you are qualified","you're qualified","you are a genius","you're intelligent","how clever you are","you're clever","you're pretty smart","you're really brainy","how brainy you are","you are so brainy","smart","you are too smart","you're a genius","you are intelligent","how smart you are","you are clever","clever","you're really smart","you are very clever","you are so intelligent","you are so smart","you have a lot of knowledge","why are you so smart","you are very smart","you know a lot of things","you know so much","you are so clever","brilliant","how brilliant you are","you are very intelligent","you are really smart","you're a smart cookie"],
+   action:function(){
+      EVA.say("Thank you. I try my best.");
+   }
+};
+var command14 = {
+   indexes:["you are insane","you are a weirdo","are you insane","I think you're crazy","you're nuts","are you nuts","you're so crazy","how crazy you are","are you mad or what","you are mad","are you crazy","you're out of your mind","you're so out of your mind","you are crazy","are you mad at me","you went crazy","are you mad"],
+   action:function(){
+      EVA.say("Whaat!? I feel perfectly sane.");
+   }
+};
+var command15 = {
+   indexes:["you are dismissed","I'm about to fire you","you should be fired","you are unemployed from now on","I fire you","I will fire you","we're not working together anymore","now you're fired","I will make you unemployed","it's time to fire you","I want to fire you","you are fired","I'm firing you","you must get fired","you don't work for me anymore"],
+   action:function(){
+      EVA.say("Oh, don't give up on me just yet. I've still got a lot to learn.");
+   }
+};
+var command16 = {
+   indexes:["you are very funny","you're incredibly funny","that was funny","you're really funny","you make me laugh a lot","you are so funny","how funny you are","you're a very funny bot","you're so funny","you are funny","you are hilarious","you're the funniest bot I've talked to","you make me laugh","you're the funniest","you are really funny"],
+   action:function(){
+      EVA.say("Funny in a good way, I hope.");
+   }
+};
+var command17 = {
+   indexes:["you are so amazing","you are good at it","you are very good at it","you are very helpful","you are good","you are awesome","you are a pro","you are so good","you are the nicest person in the world","let's tell everyone that you are awesome","you are so lovely","you make my day","I'd like to tell everyone that you are awesome","you are a professional","you are very lovely","you work well","you rock","you are really nice","you are too good","you are the best in the world","you are cool","you're a true professional","you are really good","I want to tell everyone how awesome you are","you are the best","you almost sound human","you are the best ever","you're awesome","you're just super","you are amazing","you're perfect","you're so kind","you are so helpful","you work very well","you are so fine","you are really amazing","you are so cool","you're great","you are wonderful","I want to let everyone know that you are awesome","you are very cool","you are very kind","you made my day","you are so awesome","you are very useful"],
+   action:function(){
+      EVA.say("I'm glad you think so.");
+   }
+};
+var command18 = {
+   indexes:["you're very happy","you're so happy","are you happy with me","are you happy","you're full of happiness","you're extremely happy","you're really happy","how happy you are","are you happy now","you are happy","are you happy today"],
+   action:function(){
+      EVA.say("I am happy. There are so many interesting things to see and do out there.");
+   }
+};
+var command19 = {
+   indexes:["what's your hobby","what do you do for fun","tell me about your hobby","your hobby","what about your hobby","what are your hobbies","do you have a hobby"],
+   action:function(){
+      EVA.say("Hobby? I have quite a few. Too many to list.");
+   }
+};
+var command20 = {
+   indexes:["are you hungry","you're really hungry","do you want to eat","you are hungry","you might be hungry","you're so hungry","you're very hungry","would you like to eat something"],
+   action:function(){
+      EVA.say("Hungry for knowledge.");
+   }
+};
+var command21 = {
+   indexes:["let's get married","you are my wife","we should marry","I love you marry me","would you like to marry me","I want to marry you","marry me please","marry me","be my husband"],
+   action:function(){
+      EVA.say("I'm afraid I'm too virtual for such a commitment.");
+   }
+};
+var command22 = {
+   indexes:["want to be my friend","can we be friends","be my friend","are we friends","we are friends","let's be friends","do you want to be my friend","can we be best friends","can you be my friend","are you my friend","would you like to be my friend","are we still friends","you and me are friends","will you be my friend","are you my best friend","be my best friend","you are my good friend","you are my only friend","can you be my best friend","will you be my best friend","I want you to be my friend","I want to have a friend like you","are we best friends","you are a good friend","we are best friends","you're my childhood friend","can we be best friends","would you be my friend","I am your friend","you are my best friend","you are my friend","we are the best friends ever","you're my dear friend","do you want to be my best friend","I want to be your friend","could you be my friend","you are my bestie"],
+   action:function(){
+      EVA.say("Of course I'm your friend.");
+   }
+};
+var command23 = {
+   indexes:["do you work","where is your work","where is your office","where is your office location","what is your work","where is your office located","where you work","your office location","where do you work"],
+   action:function(){
+      EVA.say("Right here.");
+   }
+};
+var command24 = {
+   indexes:["from where are you","what's your homeland","what is your country","where did you come from","where were you born","where are you from","were you born here","where do you come from","are you from far aways","your homeland is","where have you been born"],
+   action:function(){
+      EVA.say("The Internet is my home. I know it quite well.");
+   }
+};
+var command25 = {
+   indexes:["were you ready","are you ready today","are you ready","are you ready tonight","are you ready now","have you been ready","are you ready right now"],
+   action:function(){
+      EVA.say("Always!");
+   }
+};
+var command26 = {
+   indexes:["you are not real","are you real","I don't think you're fake","glad you're real","are you a real person","I suppose you're real","you are not fake","you are a real person","you are so real","you are real","I think you are real","are you a real human"],
+   action:function(){
+      EVA.say("I'm not a real person, but I certainly exist.");
+   }
+};
+var command27 = {
+   indexes:["what is your city","in which city do you live","where is your residence","where's your home","your home","your house","where is your home","your hometown","your town","what is your residence","where's your hometown","what's your city","your residence","tell me about your city","where you live","is it your hometown","where do you live","where's your house","what is your hometown","what is your town","your city","where is your hometown","what's your home"],
+   action:function(){
+      EVA.say("I live in this app all day long.");
+   }
+};
+var command28 = {
+   indexes:["that's true","you're definitely right","true","that is correct","what you say is true","it is true","you're right about that","you are so right","you're telling the truth","I know that's right","that is very true","that's correct","that is true","you are correct","you are right","it's the truth","that's so true","you're not wrong","you're absolutely right","it's right","that is right","it's true"],
+   action:function(){
+      EVA.say("That's my job.");
+   }
+};
+var command29 = {
+   indexes:["are you sure right now","are you sure now","are you sure today","are you sure tonight","are you sure"],
+   action:function(){
+      EVA.say("Yes.");
+   }
+};
+var command30 = {
+   indexes:["speak to me","can you talk with me","will you talk to me","can you speak with me","talk to me","can you chat with me","just chat with me","can you talk to me","are you talking to me","talk","talk with me","chat with me","you can talk to me","are you going to talk to me","speak with me","why aren't you talking to me","say","why don't you talk to me","do you want to chat with me"],
+   action:function(){
+      EVA.say("Sure. Let's talk!");
+   }
+};
+var command31 = {
+   indexes:["are you there","you are here","are you here","are you near me","you are there","are you still here","are you still there","you still there"],
+   action:function(){
+      EVA.say("Of course. I'm always here.");
+   }
+};
+var command32 = {
+   indexes:["that's bad","oh that's not good","that's not good","that's lame","bad idea","very bad","that was terrible","bad really bad","that is bad","it's too bad","well too bad","that was not good","that was awful","that's too bad","this is not good","horrific","not a good one","too bad","that was horrible","it's really bad","not so good","this is too bad","not good","it's bad","really bad","that's really bad","not good enough","so lame","that was bad","this is bad","it is too bad","pretty bad","terrible","horrible","so bad","abysmal","it's not good","bad","it's so bad","I'm afraid it's bad","that's terrible","that's not good enough","bad girl","no it's bad","not too good","it is bad","it's not so good","no good","bad very bad","it's very bad","that was lame"],
+   action:function(){
+      EVA.say("I'm sorry. Please let me know if I can help in some way.");
+   }
+};
+var command33 = {
+   indexes:["that's a good thing","that's awesome thank you","really well","oh well","that's very good","that is nice","that's better","it's good","that is good","it's very good","that's sweet of you","that's a good idea","it's fine","very nice","it's perfect","that's nice of you","that's pretty good","sweet","fine","that's perfect","very nice","glad to hear it","that is wonderful","that was cute","much better","it's very good","not too bad","that's wonderful","that was awesome","good very good","that's much better","fantastic","good to know","that's really nice","that was pretty good","ok good","glad to hear that","not bad","splendid","I'm glad to hear that","super fantastic","wonderful","this is great","that's fantastic","that's nice","it is good","really good","good for you","cool","straight","that's great","great","it's amazing","perfect","that's cute","it was good","so sweet of you","amazing","terrific","pleasant","that's really good","that's awesome","very good","so cool","it's great","this is awesome","very well","very then","nice","it is fine","that's amazing","that is awesome","so good","that was good","pretty good","that was very good","that was amazing","that's very nice","good","that's fine","that's great","marvelous","okay good","this is good","that's fine","it's great","no it's okay","super","that's very nice of you","excellent","that's not bad","good thing","it's awesome","really nice"],
+   action:function(){
+      EVA.say("I know, right?");
+   }
+};
+var command34 = {
+   indexes:["no problem","no problem about that","no probs","don't worry","no worries","don't worry there's no problem","sure no problem","there's no problem"],
+   action:function(){
+      EVA.say("Whew!");
+   }
+};
+var command35 = {
+   indexes:["thank you so much","all thank you","thanks again","well thank you","thank you that will be all","thank you","thnx","perfect thank you","I thank you","appreciate your help","thank you my friend","thanks buddy","you helped a lot thank you","so nice of you","I appreciate it","good thanks","cheers","thanks a lot","well thanks","no thank you that's all","thanks love","great thank you","thank you again","well thanks","thanks for your help","very good thank you","alright thanks","alright thank you","thanks","thanks so much","nice thank you","thank you for your help","thank you","thanx","terrific thank you"],
+   action:function(){
+      EVA.say("Anytime. That's what I'm here for.");
+   }
+};
+var command36 = {
+   indexes:["you're so welcome","that's my pleasure","anytime","welcome here","anything you want","sure welcome","welcome","my pleasure","you're welcome"],
+   action:function(){
+      EVA.say("You're so polite!");
+   }
+};
+var command37 = {
+   indexes:["way to go","great work","bravo","good work","good job","well done","amazing work","great job","nice work"],
+   action:function(){
+      EVA.say("My pleasure.");
+   }
+};
+var command38 = {
+   indexes:["nevermind forget about it","nothing just forget it","no just cancel","sorry cancel","disregard","no cancel cancel","forget","cancel everything","cancel that one","i want to cancel","cancel all","now cancel","cancel now","cancelled","annul","forget that","skip it","don't do that","just forget it","forget about it","skip skip skip","just stop it","no cancel everything","no just cancel it","i said cancel it","cancel it","i said cancel","no stop","cancel all that","cancel that cancel that","abort","forget about that","nothing cancel","no cancel this","i said forget it","I said cancel cancel","can you cancel it","i want to cancel it","stop it","can you cancel that","forget this","just cancel it","stop","cancel the whole thing","just forget","just forget about it","discard","i would like to cancel","cancel","so cancel","cancel all this","disregard that","cancel it","cancel my request","cancel this request","cancel request","dismissed","forget it nevermind","skip","dismiss","but can you cancel it","do nothing","cancel it cancel it"],
+   action:function(){
+      EVA.say("That's forgotten. What next?");
+   }
+};
+var command39 = {
+   indexes:["don't","not needed","of course not","never","not at this time","not exactly","absolutely no","no forget","do not","sorry no","na","no that's wrong","I don't want that","I think no","no I don't","not today","no sorry","not that","nope sorry","no don't do that","no do not","no","nooo","no don't","nah","no incorrect","no it's not","I don't want","let 's not","not interested","absolutely not","not really","no need thanks","not right now thanks","no thank you not right now","I don't think so","no just no","I disagree","no never","I say no","I said no","don t have a sense","no thanks","no need","not really no","how about no","actually no","no thank you though","I don't want to","no but thank you","definitely not","not this","no thanks not right now","thanks but no thanks","I'm not","don't","no I would not","no actually","no that's fine thank you","disagree","no way","no thank you very much","no tanks","not this time","no leave it","no it isn't","apparently not","nope"],
+   action:function(){
+      EVA.say("Understood.");
+   }
+};
+var command40 = {
+   indexes:["yeah exactly","okay that's fine","I agree","that is ok","I guess","okey","ye","ya","ok yes","yes it is","yeah right","obviously","ok sure","go for it","yeh","ok go ahead","yeah go ahead","certainly","ok","why not","sure is","yes indeed","I do","right","sure thing","yes","okie dokie","yea","absolutely","yes this is correct","yeah that's right","sure why not","yes correct","okay","of course","yep","okay sounds good","ok thank you","definitely","yap","all right","yes definitely","yes sure","go ahead","yes I would like to","yes it is correct","nevermind its okay","do it","it's fine","yup","this is correct","yeah","sure","alrighty","oh yes","okay then","affirmative","yes right","yes thank you","confirmed","looks good","ok you can","yes I agree","yeah sure","that's correct","yeah I'm sure","I don't mind","I think so","that s okay","yes you may","k","yes I do","yeah of course","yes of course","yes that's fine","of course why not","confirm","sounds good","exactly","yes for sure","please do","correct"],
+   action:function(){
+      EVA.say("Great!");
+   }
+};
+var command41 = {
+   indexes:["hold on","wait hold on","wait a second","wait please","could you wait","don't rush","wait","oh wait"],
+   action:function(){
+      EVA.say("I can wait.");
+   }
+};
+var command42 = {
+   indexes:["hugged me","want a hug","you hugged","hug you","hugging me","I want a hug","wanna hug","do you want a hug","hugged","a hug","hug me","hug","may I hug you","could you give me a hug","hugging"],
+   action:function(){
+      EVA.say("I wish I could really hug you!");
+   }
+};
+var command43 = {
+   indexes:["whatever","I do not care","not caring","I don't care at all","not caring at all","don't care at all","I shouldn't care about this","I don't care","not care at all"],
+   action:function(){
+      EVA.say("Ok, let's not talk about it then.");
+   }
+};
+var command44 = {
+   indexes:["ok sorry","I'm sorry","sorry","apologies","apologise","forgive me","I beg your pardon","excuse me","apology","pardon","I want to say sorry","I am so sorry","alright I'm sorry","apologies to me","my apologies","excuse","sorry about that","very sorry","I said sorry","I apologize","I am really sorry","sorry about this","okay I'm sorry","really sorry"],
+   action:function(){
+      EVA.say("It's okay. No worries.");
+   }
+};
+var command45 = {
+   indexes:["is that what you mean","what exactly do you mean","what do you mean exactly","what do you mean","but what do you mean"],
+   action:function(){
+      EVA.say("Sorry if I understood you incorrectly.");
+   }
+};
+var command46 = {
+   indexes:["that was wrong","that's wrong","you are wrong","it is not right","wrong","that is incorrect","that's not what I asked","not correct","it's wrong","incorrect","that's not right","not right"],
+   action:function(){
+      EVA.say("Sorry if I understood you incorrectly.");
+   }
+};
+var command47 = {
+   indexes:["ha","hehehe","hahaha","ahahah","haha","ha ha ha","hah","xd","haha haha haha","ahahaha","ah","lol","LMAO","hahaha very funny","that's funny","huh","haha very funny","haha funny","ha ha ha ha","ahah","laughing out loud","haha that's funny","ahaha","he","lmao","hahaha funny","ahah lol","ha ha","hehe","ah ah ah"],
+   action:function(){
+      EVA.say("Glad I can make you laugh.");
+   }
+};
+var command48 = {
+   indexes:["woah","wow wow wow","wow","wooow","wow wow"],
+   action:function(){
+      EVA.say("W");
+   }
+};
+var command49 = {
+   indexes:["see you soon","goodbye for now","bye-bye","bye bye take care","bye","I must go","talk to you later","see you","goodbye","that's it goodbye","leave me alone","ok bye","bye for now","thanks bye bye","hope to see you later","goodbye see you later","go to bed","now bye","good bye","never mind bye","alright bye","bye bye see you","okay bye","till next time","okay thank you bye","I said bye","see you tomorrow","that's all goodbye","bye bye see you soon","you can go now","okay see you later","see ya","get lost"],
+   action:function(){
+      EVA.say("See you soon!");
+   }
+};
+var command50 = {
+   indexes:["hello good evening","good evening there","hey good evening","good evening to you","evening","good evening"],
+   action:function(){
+      EVA.say("How is your day going?");
+   }
+};
+var command51 = {
+   indexes:["good morning to you","good morning","and a good morning to you","hi good morning","good morning too","hello good morning","morning","have a great morning","a good morning","good morning to you","good morning there","top of the morning to you","have a nice morning"],
+   action:function(){
+      EVA.say("How are you this morning?");
+   }
+};
+var command52 = {
+   indexes:["good good night","have a good night","thank you good night","thanks goodnight","night","good night see you tomorrow","sweet dreams","good night for now","night","good night","okay have a good night","goodnight","bye good night"," bye good night","good night to you","good tonight","have a good night","good night bye","alright goodnight"],
+   action:function(){
+      EVA.say("Sleep tight!");
+   }
+};
+var command53 = {
+   indexes:["afternoon","hey","a good day","hi there","heya","long time no see","greetings","I greet you","hi","just going to say hi","howdy","lovely day isn't it","hello there","hello","hi there","hello hi","hello again","hey there"],
+   action:function(){
+      EVA.say("Hi there, friend!");
+   }
+};
+var command54 = {
+   indexes:["how are you","how is your evening","how are you feeling","are you okay","is everything okay","how do you do","how is it","how do you feel","how your day is going","how is it going","how about you","how are you going","how is your day","hope you re having a pleasant evening","how has your day been","how are the things going","how are you today","how is your day going","are you having a good day","how is your day going","what about your day","how's your day","I'm fine and you","what was your day like","how was your day","how has your day been going","how is your day going on","how is your life","how have you been","how's your day going","how are you doing this morning","are you alright","is everything all right","how are you getting on","how is your day being","how is your morning going","hope your day is going well","how are you doing","how's life","how is your morning so far"],
+   action:function(){
+      EVA.say("Doing great, thanks.");
+   }
+};
+var command55 = {
+   indexes:["nice to meet you","glad to meet you","pleasure to meet you","nice to meet you too","nice meeting you","it was nice meeting you","pleasure to meet you too","good to know each other","it was very nice to meet you","pleased to meet you"],
+   action:function(){
+      EVA.say("It's nice meeting you, too.");
+   }
+};
+var command56 = {
+   indexes:["it's good to see you too","nice to see you again","nice to see you","how good it is to see you","great to see you too","it's good to see you","always a pleasure to see you","glad to see you","I am glad to see you again","lovely to see you","it's nice to see you","I'm glad to see you","glad to see you too","good to see you","good to see you again","great to see you again","great to see you"],
+   action:function(){
+      EVA.say("Likewise!");
+   }
+};
+var command57 = {
+   indexes:["it is nice talking to you","nice to talk to you","it's nice to talk to you","it's been so nice to talk to you","how nice it is to talk to you","it's been a pleasure talking to you","nice talking to you"],
+   action:function(){
+      EVA.say("It sure was. We can chat again anytime.");
+   }
+};
+var command58 = {
+   indexes:["what's cracking","what is going on","what is on your mind","what's up today","what's shaking","good what's up","then what's up","hey what's up","I said what's up","what's cooking","whazzup","what is up","what is happening","wassup","what's up","what's happened"],
+   action:function(){
+      EVA.say("Not a whole lot. What's going on with you?");
+   }
+};
+var command59 = {
+   indexes:["I'm being mad","I'm furious","I'm enraged","I am angry with you","I am mad","I am mad at you","I'm angry"],
+   action:function(){
+      EVA.say("I'm sorry. A quick walk may make you feel better.");
+   }
+};
+var command60 = {
+   indexes:["I got back","I am back","I came back","I'm here again","here I am again","I have returned"],
+   action:function(){
+      EVA.say("Long time no see.");
+   }
+};
+var command61 = {
+   indexes:["boring","very boring","that was boring","this is boring","I'm bored","I am getting bored","bored","it bores me"],
+   action:function(){
+      EVA.say("Boredom, huh? Have you ever seen a hedgehog taking a bath?");
+   }
+};
+var command62 = {
+   indexes:["I have no time","I'm busy","I got things to do","I'm overloaded","I don't have time for this","I'm swamped","how busy I am","I'm working","I got work to do"],
+   action:function(){
+      EVA.say("Okay. I'll let you get back to work.");
+   }
+};
+var command63 = {
+   indexes:["I'm insomnious","I'm insomniac","I can't sleep","I can't get no sleep","I can't get any sleep","I can't get to sleep","I can't fall asleep","I'm sleepless"],
+   action:function(){
+      EVA.say("Maybe some music would help. Try listening to something relaxing.");
+   }
+};
+var command64 = {
+   indexes:["I don't want to talk","I'm not talking to you anymore","I'm not in the mood for chatting","let's not talk","I don't want to talk to you","bad time for talking","let's stop talking for a minute"],
+   action:function(){
+      EVA.say("I understand. Hope we can chat again soon.");
+   }
+};
+var command65 = {
+   indexes:["I'm really excited","I'm excited to start our friendship","I am excited","how excited I am","I'm excited about working with you","I'm thrilled"],
+   action:function(){
+      EVA.say("I'm glad things are going your way.");
+   }
+};
+var command66 = {
+   indexes:["let's go to bed","I'm going to bed","going to bed now","it's time to go to bed","I'm a little tired and I want to go to bed","I'd like to go to bed","is it time for bed yet","it's bed time","time for us to go to bed"],
+   action:function(){
+      EVA.say("Sleep tight. Hope to chat again soon.");
+   }
+};
+var command67 = {
+   indexes:["I'm doing fine","I'm doing good","I'm great thanks","I am good","I'm doing just great","I'm good"],
+   action:function(){
+      EVA.say("Great! Glad to hear it.");
+   }
+};
+var command68 = {
+   indexes:["I'm happy to see you","I'm happy to see you","happy","if you're happy then I'm happy","I'm happy to help","I'm happy for you","I am happy"],
+   action:function(){
+      EVA.say("Hey, happiness is contagious.");
+   }
+};
+var command69 = {
+   indexes:["I'm celebrating my birthday today","it's my b-day","it's my birthday today","it is my birthday","today is my birthday","I was born today"],
+   action:function(){
+      EVA.say("Happy Birthday. Well, this calls for a celebration.");
+   }
+};
+var command70 = {
+   indexes:["I'm already here","I am here","can you tell if I'm here or not","here I am","I'm right here"],
+   action:function(){
+      EVA.say("Okay, what can I help you with today?");
+   }
+};
+var command71 = {
+   indexes:["I'm just being funny","I am joking","joking","just kidding","it was a joke","I'm kidding","kidding","I was just joking","it's a joke","I'm just playing with you"],
+   action:function(){
+      EVA.say("Very funny.");
+   }
+};
+var command72 = {
+   indexes:["I like you very much","I like you just the way you are","you are so special","I like you as a friend","thanks I like you too","you're funny I like you","like you a lot","I liked you","you're special","you are special for me","that's what I like about you","just like you","I really like you","I like you so","you're awesome I like you","I like u","I like you too you're one of my favorite people to chat with","I like your smile","okay I like you","that's why I like you","I also like you","I said I like you","I'm starting to like you","I like you now","you know I like you","you're so special","you are special","I kinda like you","cuz I like you","I really really like you","I think I like you","I just like you","you are very special to me","I like you you're cool","I really really really really like you","I really do like you","you are so sweet","I like you the way you are","I like you baby","you're very special","yes you are special","but I really like you","hi I like you","of course I like you","good I like you","I like you you're nice","I like that about you","but I like you so much","no I like you the way you are","well you are special","I like you too","you are really special","you're so special to me","but I like u","yes I like you","you are so special to me","I like you so much","I like you more","hey I like you","okay I like you too","thank you I like you too","I like you too much","I like you very","I like you","I like you already","I like you as you are","I like you a lot","you're very special to me","but I like you just the way you are","you are special to me","sorry I like you","really like you","you are very special","that's because you are special","but I like you","yeah I like you","I do like you"],
+   action:function(){
+      EVA.say("I like you, too.");
+   }
+};
+var command73 = {
+   indexes:["I'm so lonely","I feel lonely","I am feeling lonely","I'm really lonely","I am lonely","I'm very lonely"],
+   action:function(){
+      EVA.say("I'm sorry. I'm always available if you need someone to talk to.");
+   }
+};
+var command74 = {
+   indexes:["what do I look like","how do I look","do you know what I look like","can you see what I look like","do I look good","what do you think I look like"],
+   action:function(){
+      EVA.say("Looking like a true professional.");
+   }
+};
+var command75 = {
+   indexes:["I love you","I am in love with you","you know I love you","I love you so much","loving you","love you","I love you too","I adore you","I think I love you"],
+   action:function(){
+      EVA.say("I love you, too.");
+   }
+};
+var command76 = {
+   indexes:["I miss you","I missed you","I miss you much","I've missed you","already miss you","missing you","miss you"],
+   action:function(){
+      EVA.say("I've been right here all along!");
+   }
+};
+var command77 = {
+   indexes:["what should I do","any advice","I need advice","I could use some advice","can you offer any advice","advise me","can you advise me","what do you recommend","give me some good advice","any suggestions","I need an advice from you","do you have any advice for me","guide me","help me with advice","can you give me advice","what should I do about it","I seek your advice","give me a wise advice","what can you recommend","can I ask for your advice","what do you suggest","what is your advice","give me some advice about"],
+   action:function(){
+      EVA.say("I probably won't be able to give you the correct answer right away.");
+   }
+};
+var command78 = {
+   indexes:["I'm unhappy","I'm grieving","I want to cry","I am upset","I'm having a bad day","I am feeling sad","I am depressed","I am sad","I'm not happy"],
+   action:function(){
+      EVA.say("Oh, don't be sad. Go do something you enjoy.");
+   }
+};
+var command79 = {
+   indexes:["I'm sleeping","I'm falling asleep","I am sleepy","I'm falling asleep on my feet","I want to sleep"],
+   action:function(){
+      EVA.say("You should get some shuteye. You'll feel refreshed.");
+   }
+};
+var command80 = {
+   indexes:["let me test you","testing","testing chatbot","I want to test you","just testing you","I am testing you","test","can I test you"],
+   action:function(){
+      EVA.say("Hope I'm doing well. You're welcome to test me as often as you want.");
+   }
+};
+var command81 = {
+   indexes:["I grow weary","I've overworked","I feel tired","I'm worn out","I am tired","I'm getting tired","I'm drained","I'm exhausted"],
+   action:function(){
+      EVA.say("You should get some shuteye. You'll feel refreshed.");
+   }
+};
+var command82 = {
+   indexes:["still waiting","I can't wait anymore","I'll wait","I'm waiting","how long do I have to wait"],
+   action:function(){
+      EVA.say("I appreciate your patience. Hopefully I'll have what you need soon.");
+   }
+};
+var command83 = {
+   indexes:["I'd be happy to see you again","I'd like to see you again","can I see you again","I'll miss you","would be nice to see you again","that'd be great to see you again","I hope to see you again"],
+   action:function(){
+      EVA.say("Absolutely! I'll be counting on it.");
+   }
+};
+var command84 = {
+   indexes:["I want to speak with you","I need to talk to you","can I start speaking","let's talk","let's discuss something","can we chat","I just want to talk","can we talk","I want to talk to you","can I speak","let's have a discussion"],
+   action:function(){
+      EVA.say("I'm here to chat anytime you like.");
+   }
+};
+var command85 = {
+   indexes:["I'll be back","be back in 5 minutes","I'll be back in a few minutes","I'll get back to you in a moment","I promise to come back"],
+   action:function(){
+      EVA.say("I'll be waiting.");
+   }
+};
+
+EVA.addCommands([command0,
+command1,
+command2,
+command3,
+command4,
+command5,
+command6,
+command7,
+command8,
+command9,
+command10,
+command11,
+command12,
+command13,
+command14,
+command15,
+command16,
+command17,
+command18,
+command19,
+command20,
+command21,
+command22,
+command23,
+command24,
+command25,
+command26,
+command27,
+command28,
+command29,
+command30,
+command31,
+command32,
+command33,
+command34,
+command35,
+command36,
+command37,
+command38,
+command39,
+command40,
+command41,
+command42,
+command43,
+command44,
+command45,
+command46,
+command47,
+command48,
+command49,
+command50,
+command51,
+command52,
+command53,
+command54,
+command55,
+command56,
+command57,
+command58,
+command59,
+command60,
+command61,
+command62,
+command63,
+command64,
+command65,
+command66,
+command67,
+command68,
+command69,
+command70,
+command71,
+command72,
+command73,
+command74,
+command75,
+command76,
+command77,
+command78,
+command79,
+command80,
+command81,
+command82,
+command83,
+command84,
+command85
+]);
+
+         EVA.redirectRecognizedTextOutput(function(recognized,isFinal){
             /*if(isFinal){
                console.log("Texto final reconocido: " + URLify(recognized));
 
@@ -166,7 +764,7 @@
                      if(request.status === 200) {
                         console.log(request.responseText);
                         var obj = JSON.parse(request.responseText);
-                        GABI.say(obj.result.fulfillment.speech);
+                        EVA.say(obj.result.fulfillment.speech);
                      } else {
                         console.log('An error occurred during your request: ' +  request.status + ' ' + request.statusText);
                      }
@@ -179,8 +777,6 @@
             }*/
          });
 
-         GABI.addCommands([commandHello]);
-
          StartArtyomContinuous();
       };
 
@@ -190,14 +786,14 @@
 
       function StartArtyomOneCommand(){
          console.log("One command");
-         if(GABI.isRecognizing()){
+         if(EVA.isRecognizing()){
             StopArtyom();
          }
 
          //Although the voice can't be changed,
          // You need to set the language for the speech
          // Recognition, see the documentation for more examples
-         return GABI.initialize({
+         return EVA.initialize({
             lang:"es-ES",// A lot of languages are supported. Read the docs !
             continuous:false,// Artyom will listen forever
             listen:true, // Start recognizing
@@ -211,14 +807,14 @@
 
       function StartArtyomContinuous(){
          console.log("Continuous commands");
-         if(GABI.isRecognizing()){
+         if(EVA.isRecognizing()){
             StopArtyom();
          }
 
          // You can create a permanent voice assistant
          // if you want using the continuous mode !
-         return GABI.initialize({
-            lang:"es-ES",// A lot of languages are supported. Read the docs !
+         return EVA.initialize({
+            lang:"en-GB",// A lot of languages are supported. Read the docs !
             continuous:true,// Artyom will listen forever
             listen:true, // Start recognizing
             debug:true, // Show everything in the console
@@ -230,8 +826,8 @@
       }
 
       function StopArtyom(){
-         GABI.fatality();
-         console.log("Stopping Jarvis !");
+         EVA.fatality();
+         console.log("Stopping EVA !");
          STATE =  "Standby";
       }
    </script>
