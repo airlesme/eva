@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <meta http-equiv="Access-Control-Allow-Origin" content="*">
    <meta name="viewport" content="width=device-width, initialscale=1.0">
    <title>E.V.O</title>
 </head>
@@ -33,15 +32,10 @@
       <canvas style="width:100%; max-width:300px;" id="myCanvas" width="300" height="300"></canvas>
    </div>
 
-
-
    <!--button type="button" onclick="StartArtyomOneCommand();">Start artyom one command</button>
    <button type="button" onclick="StartArtyomContinuous();">Start artyom continuous assistant</button>
    <br>
    <button type="button" onclick="StopArtyom();">Stop recognition</button-->
-
-
-
 
    <script>
 
@@ -163,7 +157,7 @@
          };
 
          GABI.redirectRecognizedTextOutput(function(recognized,isFinal){
-            if(isFinal){
+            /*if(isFinal){
                console.log("Texto final reconocido: " + URLify(recognized));
 
                var request = new XMLHttpRequest();
@@ -182,7 +176,7 @@
                request.send();
             }else{
                console.log(recognized);
-            }
+            }*/
          });
 
          GABI.addCommands([commandHello]);
